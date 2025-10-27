@@ -1,0 +1,82 @@
+
+<% layout('layouts/boilerplate') %>
+<body style="font-family: Arial, sans-serif; background: #f8f9fa; padding: 40px;">
+  <div style="max-width: 500px; margin: auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+    <h3 style="text-align: center; margin-bottom: 20px; color: #333;"><b>Edit Listing</b></h3>
+
+    <!-- START FORM -->
+    <form id="editListingForm" method="POST" action="/listings/<%= listing._id %>?_method=PUT" style="display: flex; flex-direction: column; gap: 18px;" novalidate>
+
+      <div class="mb-3">
+        <label style="font-weight: bold; color: #555;">Title <span style="color: red;">*</span></label>
+        <input name="listing[title]" type="text" class="form-control" required
+               value="<%= listing.title %>"
+               style="width: 100%; height: 50px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px;">
+        <div class="invalid-feedback">Please enter a title.</div>
+      </div>
+
+      <div class="mb-3">
+        <label style="font-weight: bold; color: #555;">Description <span style="color: red;">*</span></label>
+        <input name="listing[description]" type="text" class="form-control" required
+               value="<%= listing.description %>"
+               style="width: 100%; height: 50px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px;">
+        <div class="invalid-feedback">Please enter a description.</div>
+      </div>
+
+      <div class="mb-3">
+  <label style="font-weight: bold; color: #555;">Image URL / Link</label>
+  <input name="listing[image]" placeholder="Enter image URL / Link" type="text" class="form-control"
+         value="<%= listing.image %>"
+         style="width: 100%; height: 50px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px;">
+</div>
+
+      <div class="mb-3">
+        <label style="font-weight: bold; color: #555;">Price <span style="color: red;">*</span></label>
+        <input name="listing[price]" type="number" class="form-control" required min="0"
+               value="<%= listing.price %>"
+               style="width: 100%; height: 50px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px;">
+        <div class="invalid-feedback">Please enter a valid price.</div>
+      </div>
+
+      <div class="mb-3">
+        <label style="font-weight: bold; color: #555;">Location <span style="color: red;">*</span></label>
+        <input name="listing[location]" type="text" class="form-control" required
+               value="<%= listing.location %>"
+               style="width: 100%; height: 50px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px;">
+        <div class="invalid-feedback">Please enter a location.</div>
+      </div>
+
+      <div class="mb-3">
+        <label style="font-weight: bold; color: #555;">Country <span style="color: red;">*</span></label>
+        <input name="listing[country]" type="text" class="form-control" required
+               value="<%= listing.country %>"
+               style="width: 100%; height: 50px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px;">
+        <div class="invalid-feedback">Please enter a country.</div>
+      </div>
+
+      <button type="submit" class="btn btn-dark"
+              style="padding: 12px; background: black; color: #fff; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; transition: 0.3s;">
+        Save Changes
+      </button>
+    </form>
+    <!-- END FORM -->
+
+  </div>
+
+  <!-- ✅ Client-side validation script -->
+  <script>
+    (function () {
+      'use strict';
+      const form = document.getElementById('editListingForm');
+
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    })();
+  </script>
+</body>

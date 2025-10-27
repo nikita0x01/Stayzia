@@ -1,0 +1,180 @@
+<% layout('layouts/boilerplate') %>
+<style>
+  .filters-container {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    gap: 40px; /* spacing between filters */
+    margin-top: 20px;
+    flex-wrap: wrap; /* allows wrapping on small screens */
+    align-items: center; /* vertically center items */
+  }
+
+  .filter {
+    text-align: center;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    user-select: none;
+  }
+
+  .filter:hover {
+    opacity: 1;
+  }
+
+  .tax-toggle {
+    display: flex;
+    align-items: center; /* vertically center toggle content */
+    font-size: 18px; /* larger label text */
+    opacity: 0.8;
+    cursor: pointer;
+    gap: 8px;
+    user-select: none;
+    border: 2px solid black; /* black outline */
+    border-radius: 20px; /* oval shape */
+    padding: 6px 12px; /* spacing inside the oval */
+    width: fit-content;
+  }
+
+  .tax-toggle:hover {
+    opacity: 1;
+  }
+
+  .tax-toggle input[type="checkbox"] {
+    width: 40px; /* larger toggle width */
+    height: 22px; /* larger toggle height */
+    cursor: pointer;
+    accent-color: #007bff; /* optional accent color */
+    flex-shrink: 0;
+    vertical-align: middle;
+    margin-top: 0; /* remove any extra top margin */
+    position: relative;
+    top: -1px; /* adjust vertical alignment */
+  }
+
+  .tax-toggle label {
+    font-weight: 600;
+    color: #333;
+    user-select: none;
+  }
+
+  .tax-info {
+    display: none;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  /* Heart hover effect */
+  form button i:hover {
+    color: red;
+    transform: scale(1.2);
+    transition: 0.2s;
+  }
+</style>
+
+
+
+  <div class="filters-container">
+    <div class="filter">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Rooms</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain-city"></i></div>
+      <p>Iconic Cities</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain"></i></div>
+      <p>Mountains</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-person-swimming"></i></div>
+      <p>Amazing Tools</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-campground"></i></div>
+      <p>Camping</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-cow"></i></div>
+      <p>Farms</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-snowflake"></i></div>
+      <p>Arctic</p>
+    </div>
+    
+    
+    <div class="filter">
+      <div><i class="fa-solid fa-umbrella-beach"></i></div>
+      <p>Beach</p>
+    </div>
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+     <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+    </div>
+    </div>
+  </div>
+
+
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% 
+      // List of default images in the 'public' folder
+      const defaultImages = ['/default.png', '/default_1.png', '/default_2.png', '/default_3.jpg', '/default_4.jpg'];
+    %>
+
+    <% listings.forEach(function(listing) { 
+         // Pick a random default image if user didn't provide one
+         const randomDefault = defaultImages[Math.floor(Math.random() * defaultImages.length)];
+    %>
+
+      <a href="/listings/<%= listing._id %>" class="listing-link" style="position: relative; display: block;">
+        <div class="card col listing-card" style="width: 20rem; margin-bottom: 1rem; position: relative;">
+
+          <img style="height: 20rem; width:100%; object-fit: cover;"
+               src="<%= listing.image && listing.image.url ? listing.image.url : randomDefault %>"
+               class="card-img-top"
+               alt="<%= listing.title %>"
+               onerror="this.onerror=null; this.src='<%= randomDefault %>';">
+
+          <!-- Heart Favorite Button -->
+          <form method="POST" action="/favorites/<%= listing._id %>" style="position: absolute; top: 10px; right: 10px;">
+            <button type="submit" style="background:none; border:none; cursor:pointer; font-size:24px; color:black;">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </form>
+
+          <div class="card-body">
+            <b><h5 class="card-title"><%= listing.title %></h5></b>
+            <p class="card-text">₹<%= listing.price.toLocaleString('en-IN') %> /Night 
+            <i class="tax-info">
+               +18% GST
+            </i>
+          </p>
+          </div>
+        </div>
+      </a>
+    <% }); %>
+  </div>
+
+</body>
+
+<script>
+  const taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("change", () => {
+    const taxInfos = document.getElementsByClassName("tax-info");
+    for (const info of taxInfos) {
+      if (taxSwitch.checked) {
+        info.style.display = "inline";
+      } else {
+        info.style.display = "none";
+      }
+    }
+  });
+</script>

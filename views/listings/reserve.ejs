@@ -1,0 +1,57 @@
+
+
+<% layout('layouts/boilerplate') %>
+
+<h1 style="text-align:center; margin-bottom: 20px;">Reserve: <%= listing.title %></h1>
+
+<form method="POST" action="/listings/<%= listing._id %>/reserve" 
+      style="width: 80%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+
+  <div style="margin-bottom: 15px;">
+    <label style="font-weight: bold; display:block;">Name:</label>
+    <input type="text" name="name" placeholder="Your name" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;" required>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label style="font-weight: bold; display:block;">Email:</label>
+    <input type="email" name="email" placeholder="Your email" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;" required>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label style="font-weight: bold; display:block;">Check-in Date:</label>
+    <input type="date" name="checkin" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;" required>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label style="font-weight: bold; display:block;">Check-out Date:</label>
+    <input type="date" name="checkout" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;" required>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label style="font-weight: bold; display:block;">Number of Guests:</label>
+    <input type="number" name="guests" min="1" max="10" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc;" required>
+  </div>
+
+  <button type="submit" style="padding:14px 28px; background: green; color:white; border:none; border-radius:10px; font-size:17px; cursor:pointer; width:100%;">
+    Confirm Reservation
+  </button>
+</form>
+
+<script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (e) => {
+    const checkin = new Date(form.checkin.value);
+    const checkout = new Date(form.checkout.value);
+    const guests = parseInt(form.guests.value);
+
+    if (checkout <= checkin) {
+      e.preventDefault();
+      alert("Check-out date must be after check-in date!");
+    }
+
+    if (guests < 1 || guests > 10) {
+      e.preventDefault();
+      alert("Number of guests must be between 1 and 10!");
+    }
+  });
+</script>

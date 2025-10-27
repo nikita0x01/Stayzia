@@ -1,0 +1,75 @@
+<% layout('layouts/boilerplate') %>
+<div class="row mt-5">
+  <h1 class="text-center mb-4">Login for Stayzia</h1>
+  <div class="col-12 col-md-6 offset-md-3">
+    <form id="signupForm" action="/login" method="post" class="needs-validation" novalidate>
+      
+      <!-- Username -->
+      <div class="mb-3">
+        <label for="username" class="form-label fw-bold text-secondary">
+          Username <span class="text-danger">*</span>
+        </label>
+        <input name="username" id="username" type="text" class="form-control" placeholder="Enter your username" required>
+        
+      </div>
+
+      
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label fw-bold text-secondary">
+          Password <span class="text-danger">*</span>
+        </label>
+        <input name="password" id="password" type="password" class="form-control" placeholder="Enter your password" required minlength="6">
+        
+      </div>
+    
+
+      <!-- Submit Button -->
+      <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+      <br>
+      <br>
+    </form>
+  </div>
+</div>
+
+<!-- Validation Script -->
+<script>
+(function () {
+  'use strict'
+
+  const form = document.getElementById('signupForm');
+
+  form.addEventListener('submit', function (event) {
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    form.classList.add('was-validated');
+  });
+
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+
+  emailInput.addEventListener('input', function () {
+    if (emailInput.validity.valid) {
+      emailInput.classList.add('is-valid');
+      emailInput.classList.remove('is-invalid');
+    } else {
+      emailInput.classList.add('is-invalid');
+      emailInput.classList.remove('is-valid');
+    }
+  });
+
+  passwordInput.addEventListener('input', function () {
+    if (passwordInput.value.length >= 6) {
+      passwordInput.classList.add('is-valid');
+      passwordInput.classList.remove('is-invalid');
+    } else {
+      passwordInput.classList.add('is-invalid');
+      passwordInput.classList.remove('is-valid');
+    }
+  });
+
+})();
+</script>

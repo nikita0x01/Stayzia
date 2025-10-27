@@ -1,0 +1,166 @@
+<% layout('layouts/boilerplate') %>
+<head>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/starability/2.4.2/starability-all.min.css"
+  integrity="sha512-HfuZ5M5ZOSAfzqKP9oFCxvLk8QJ8o4dx3uT8Edg7Y2fgyABmuVE1CgqVi3SlYHe5mUP3kTwXxSdpL5GJ3xKqvA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+</head>
+<body style="font-family: Arial, sans-serif; background: #f4f6f9; padding: 40px;">
+  <div style="max-width: 90%; margin: auto; background: #fff; padding: 50px; border-radius: 16px; box-shadow: 0 6px 18px rgba(0,0,0,0.1);">
+
+    <!-- Listing Title -->
+    <h2 style="font-size: 2.2rem; color: #111; margin-bottom: 30px;"><strong><%= listing.title %></strong></h2>
+
+    <!-- Listing Details -->
+    <div style="padding: 20px 0; line-height: 1.8; font-size: 18px; color: #444; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+     
+      <p>
+  <strong style="color:#111;">Owner:</strong>
+  <%= listing.owner ? listing.owner.username : "Nikita Satpute" %>
+</p>
+
+      <p><strong style="color:#111;">Description:</strong> <%= listing.description %></p>
+      <p><strong style="color:#111;">Price:</strong> 
+         <span style="color:#28a745; font-weight: 600;">₹<%= listing.price.toLocaleString("en-IN") %></span></p>
+      <p><strong style="color:#111;">Location:</strong> <%= listing.location %></p>
+      <p><strong style="color:#111;">Country:</strong> <%= listing.country %></p>
+    </div>
+
+    <!-- Buttons -->
+   <% if (currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
+  <div style="display: flex; justify-content: center; gap: 25px; margin-top: 40px; flex-wrap: wrap;">
+    <a href="/listings/<%= listing._id %>/edit" 
+       style="padding: 14px 28px; background: black; color: #fff; text-decoration: none; border-radius: 10px; font-size: 17px; font-weight: 500; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: all 0.3s;">
+         Edit Listing
+    </a>
+
+    <form method="post" action="/listings/<%= listing._id %>?_method=delete" style="margin: 0;">
+      <button style="padding: 14px 28px; background: black; color: #fff; border: none; border-radius: 10px; font-size: 17px; font-weight: 500; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: all 0.3s;">
+         Delete Listing
+      </button>
+    </form>
+  </div>
+<% } %>
+    <form method="GET" action="/listings/<%= listing._id %>/reserve" style="display:inline; margin:0;">
+  <button type="submit" 
+          style="padding: 14px 28px; background: red; color: #fff; border: none; border-radius: 10px; font-size: 17px; font-weight: 500; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: all 0.3s;">
+    Reserve Place
+  </button>
+</form>
+
+
+
+    <hr style="margin: 45px 0; border-color: #eee;">
+
+    <!-- Review Submission -->
+     
+    <div style="background:#fafafa; padding:30px; border-radius:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-top:30px;">
+      <h4 style="text-align:center; font-weight:600; color:#222; margin-bottom:30px;">Please Leave Your Valuable Review</h4>
+
+      <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation"
+            style="background:#fff; border:1px solid #ddd; padding:30px; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,0.05); max-width: 1000px; margin: auto;">
+
+        <!-- Rating -->
+        <!-- Star Rating -->
+<div style="margin-bottom:25px;">
+  <label for="rating" style="font-weight:600; display:block; margin-bottom:10px; font-size:16px;">
+    Rating
+  </label>
+
+  <fieldset class="starability-basic"
+            style="border:none; display:flex; justify-content:center; gap:8px; direction:rtl; font-size:0;">
+
+    <legend class="visually-hidden">Rating:</legend>
+
+    <input type="radio" id="rate5" name="review[rating]" value="5" style="display:none;"
+           onclick="setStars(this)">
+    <label for="rate5" title="Amazing"
+           style="cursor:pointer; font-size:32px; color:#ccc; transition:color 0.2s;">★</label>
+
+    <input type="radio" id="rate4" name="review[rating]" value="4" style="display:none;"
+           onclick="setStars(this)">
+    <label for="rate4" title="Very good"
+           style="cursor:pointer; font-size:32px; color:#ccc; transition:color 0.2s;">★</label>
+
+    <input type="radio" id="rate3" name="review[rating]" value="3" style="display:none;"
+           onclick="setStars(this)">
+    <label for="rate3" title="Average"
+           style="cursor:pointer; font-size:32px; color:#ccc; transition:color 0.2s;">★</label>
+
+    <input type="radio" id="rate2" name="review[rating]" value="2" style="display:none;"
+           onclick="setStars(this)">
+    <label for="rate2" title="Not good"
+           style="cursor:pointer; font-size:32px; color:#ccc; transition:color 0.2s;">★</label>
+
+    <input type="radio" id="rate1" name="review[rating]" value="1" style="display:none;"
+           onclick="setStars(this)">
+    <label for="rate1" title="Terrible"
+           style="cursor:pointer; font-size:32px; color:#ccc; transition:color 0.2s;">★</label>
+  </fieldset>
+
+  <script>
+    function setStars(el) {
+      const fieldset = el.parentNode;
+      const value = parseInt(el.value);
+      const labels = Array.from(fieldset.querySelectorAll('label')).reverse(); // left→right order
+      labels.forEach((label, index) => {
+        label.style.color = index < value ? '#f7b500' : '#ccc';
+      });
+    }
+  </script>
+</div>
+
+
+
+
+        <!-- Comment -->
+        <div style="margin-bottom:30px;">
+          <label for="comment" style="font-weight:600; display:block; margin-bottom:10px; font-size: 16px;">
+            Comments <span style="color:red;">*</span>
+          </label>
+          <textarea name="review[comment]" id="comment" cols="30" rows="6" required
+                    style="width:100%; min-height: 150px; font-size: 16px; border:1px solid #ccc; border-radius:10px; padding:15px; resize: vertical;"></textarea>
+          <div class="invalid-feedback" style="color:red; font-size:0.9rem;">Please enter some comments for review!</div>
+        </div>
+
+        <!-- Submit -->
+        <div style="text-align:center;">
+          <button type="submit"
+                  style="padding:12px 30px; border:1px solid #111; background:#fff; color:#111; border-radius:8px; font-size:16px; font-weight:600; transition: all 0.3s;">
+            Submit
+          </button>
+        </div>
+      </form>
+      
+    </div>
+    
+    <hr style="margin: 50px 0; border-color:#eee;">
+
+    <!-- All Reviews -->
+    <h4 style="text-align:center; font-weight:600; margin-bottom:30px; color:#222;">All Reviews</h4>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:25px;">
+      <% for (let review of listing.reviews) { %>
+        <div style="width: 300px; border:1px solid #ddd; border-radius:12px; background:#fff; box-shadow:0 4px 10px rgba(0,0,0,0.08); padding:20px;">
+          <h5 style="font-size:1.1rem; font-weight:600; color:#111; margin-bottom:10px;"><%= review.author.username %></h5>
+          <p style="color:#555; font-size:1rem; margin-bottom:10px;"><%= review.comment %></p>
+          
+          <p class="starability-result card-text" data-rating="<%= review.rating %>">
+    
+  </p>
+          <form class="mb-3" method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+  <button class="btn btn-sm btn-dark">Delete</button>
+</form>
+        </div>
+      <% } %>
+    </div>
+
+  </div>
+</body>
+
+

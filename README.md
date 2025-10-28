@@ -64,21 +64,19 @@ Built using **Node.js**, **Express**, **MongoDB**, and **EJS**, Stayzia provides
    ```bash
    git clone https://github.com/nikita0x01/Stayzia.git
    cd Stayzia
-##To install npm packages-   
 npm install
 
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_KEY=your_api_key
+CLOUDINARY_SECRET=your_api_secret
+ATLAS_DB_URL=your_mongodb_atlas_url
+SESSION_SECRET=your_secret
 
-##CLOUDINARY_CLOUD_NAME=your_cloud_name
-##CLOUDINARY_KEY=your_api_key
-##CLOUDINARY_SECRET=your_api_secret
-##ATLAS_DB_URL=your_mongodb_atlas_url
-##SESSION_SECRET=your_secret
-
-##To run project-
 node app.js
+# or
 nodemon app.js
 
-##Project Structure
+
 MajorProject/
 │
 ├── controllers/          # Route logic (handles request/response)
@@ -116,3 +114,4 @@ MajorProject/
 ├── package.json          # Dependencies and scripts
 │
 └── README.md             # Project documentation
+

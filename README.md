@@ -1,4 +1,4 @@
-# 🏡 Stayzia — Accommodation Listing Platform
+#  Stayzia — Your Next Stay Awaits
 
 **Live Demo:** [https://stayzia.onrender.com/listings](https://stayzia.onrender.com/listings)
 

@@ -68,11 +68,11 @@ Built using **Node.js**, **Express**, **MongoDB**, and **EJS**, Stayzia provides
 npm install
 
 
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_KEY=your_api_key
-CLOUDINARY_SECRET=your_api_secret
-ATLAS_DB_URL=your_mongodb_atlas_url
-SESSION_SECRET=your_secret
+##CLOUDINARY_CLOUD_NAME=your_cloud_name
+##CLOUDINARY_KEY=your_api_key
+##CLOUDINARY_SECRET=your_api_secret
+##ATLAS_DB_URL=your_mongodb_atlas_url
+##SESSION_SECRET=your_secret
 
 ##to run project-
 node app.js
@@ -82,25 +82,38 @@ nodemon app.js
 ## 📦 Project Structure
 MajorProject/
 │
-├── controllers/ # Route logic
-├── init/ # Initialization files
-├── models/ # Mongoose schemas (Listing, Review, User)
-├── public/ # Static assets (CSS, JS, Images)
-├── routes/ # Express routes (listings.js, users.js, reviews.js)
-├── uploads/ # Temporary image storage
-├── utils/ # Helper utilities
-├── views/ # EJS templates
-│ ├── listings/
-│ ├── users/
-│ ├── reviews/
-│ └── partials/
+├── controllers/          # Route logic (handles request/response)
 │
-├── app.js # Main Express application
-├── middleware.js # Custom middleware
-├── schema.js # Validation schemas
-├── seed.js # Seed data for MongoDB
-├── .env # Environment variables
-├── .gitignore # Ignored files
-├── package.json # Dependencies and scripts
-└── README.md # Project documentation
-
+├── init/                 # Initialization files (DB connect, setup)
+│
+├── models/               # Mongoose schemas (Listing, Review, User)
+│
+├── public/               # Static assets (CSS, JS, Images)
+│
+├── routes/               # Express routes (listings.js, users.js, reviews.js)
+│
+├── uploads/              # Temporary image storage
+│
+├── utils/                # Helper utility functions
+│
+├── views/                # EJS templates
+│   ├── listings/
+│   ├── users/
+│   ├── reviews/
+│   └── partials/
+│
+├── app.js                # Main Express application
+│
+├── middleware.js         # Custom middleware
+│
+├── schema.js             # Validation schemas
+│
+├── seed.js               # Seed data for MongoDB
+│
+├── .env                  # Environment variables
+│
+├── .gitignore            # Ignored files
+│
+├── package.json          # Dependencies and scripts
+│
+└── README.md             # Project documentation

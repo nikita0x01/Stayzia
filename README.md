@@ -76,42 +76,6 @@ node app.js
 # or
 nodemon app.js
 
+<img width="460" height="673" alt="image" src="https://github.com/user-attachments/assets/ff14f70c-c6f9-4744-a36e-4b996cb64125" />
 
-MajorProject/
-│
-├── controllers/          # Route logic (handles request/response)
-│
-├── init/                 # Initialization files (DB connect, setup)
-│
-├── models/               # Mongoose schemas (Listing, Review, User)
-│
-├── public/               # Static assets (CSS, JS, Images)
-│
-├── routes/               # Express routes (listings.js, users.js, reviews.js)
-│
-├── uploads/              # Temporary image storage
-│
-├── utils/                # Helper utility functions
-│
-├── views/                # EJS templates
-│   ├── listings/
-│   ├── users/
-│   ├── reviews/
-│   └── partials/
-│
-├── app.js                # Main Express application
-│
-├── middleware.js         # Custom middleware
-│
-├── schema.js             # Validation schemas
-│
-├── seed.js               # Seed data for MongoDB
-│
-├── .env                  # Environment variables
-│
-├── .gitignore            # Ignored files
-│
-├── package.json          # Dependencies and scripts
-│
-└── README.md             # Project documentation
 

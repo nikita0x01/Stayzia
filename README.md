@@ -55,6 +55,69 @@ Built using **Node.js**, **Express**, **MongoDB**, and **EJS**, Stayzia provides
 
 ---
 
+## Project Structure 
+```
+MAJORPROJECT
+├── controllers
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+│
+├── init
+│   ├── data.js
+│   └── index.js
+│
+├── models
+│   ├── Listing.js
+│   ├── Review.js
+│   └── User.js
+│
+├── public
+│   ├── css
+│   ├── default_1.png
+│   ├── default_2.png
+│   ├── default_3.png
+│   ├── default_4.jpg
+│   └── default.png
+│
+├── routes
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+│
+├── uploads
+│
+├── utils
+│   ├── ExpressError.js
+│   └── wrapAsync.js
+│
+├── views
+│   ├── includes
+│   │   ├── flash.ejs
+│   │   ├── footer.ejs
+│   │   └── navbar.ejs
+│   │
+│   ├── layouts
+│   │   └── boilerplate.ejs
+│   │
+│   ├── listings
+│   │   ├── edit.ejs
+│   │   ├── index.ejs
+│   │   ├── new.ejs
+│   │   ├── reserve.ejs
+│   │   └── show.ejs
+│   │
+│   ├── users
+│   │   ├── login.ejs
+│   │   └── signup.ejs
+│   │
+│   └── error.ejs
+│
+├── .env
+├── .gitignore
+├── package.json
+└── app.js
+```
 
 ---
 
@@ -77,5 +140,9 @@ node app.js
 nodemon app.js
 
 <img width="460" height="673" alt="image" src="https://github.com/user-attachments/assets/ff14f70c-c6f9-4744-a36e-4b996cb64125" />
+
+## Deployment
+
+The project is deployed on Render. Make sure to add all environment variables in the Render dashboard.
 
 

@@ -139,7 +139,7 @@ node app.js
 # or
 nodemon app.js
 
-<img width="460" height="673" alt="image" src="https://github.com/user-attachments/assets/ff14f70c-c6f9-4744-a36e-4b996cb64125" />
+---
 
 ## Deployment
 

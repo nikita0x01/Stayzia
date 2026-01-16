@@ -3,19 +3,19 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing");
 const data = require("./init/data");
 
-const dburl = process.env.ATLASDB_URL; // ✅ use your Atlas DB URL from .env
+const dburl = process.env.ATLASDB_URL; //  use your Atlas DB URL from .env
 
 mongoose
   .connect(dburl)
-  .then(() => console.log("✅ Connected to MongoDB Atlas"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .then(() => console.log(" Connected to MongoDB Atlas"))
+  .catch((err) => console.error(" MongoDB connection error:", err));
 
 async function seedDB() {
   try {
     // Optional: Clear existing records
     await Listing.deleteMany({});
 
-    // 🧠 Add default required fields if missing
+    //  Add default required fields if missing
     const formattedData = data.map((item, index) => ({
       title: item.title || `Sample Listing ${index + 1}`,
       price: item.price || Math.floor(Math.random() * 5000) + 500, // random fallback price
@@ -28,14 +28,14 @@ async function seedDB() {
       }
     }));
 
-    // ✅ Insert modified data
+    //  Insert modified data
     await Listing.insertMany(formattedData);
-    console.log("🌱 Database seeded successfully!");
+    console.log(" Database seeded successfully!");
   } catch (err) {
-    console.error("❌ Error seeding database:", err);
+    console.error(" Error seeding database:", err);
   } finally {
     mongoose.connection.close();
-    console.log("🔒 MongoDB connection closed.");
+    console.log(" MongoDB connection closed.");
   }
 }
 

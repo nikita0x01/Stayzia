@@ -6,7 +6,7 @@ module.exports.index = async (req, res) => {
 };
 
 module.exports.renderNewForm = (req , res ) => (req, res) => {
-  res.render("listings/new"); // ✅ render the correct EJS template
+  res.render("listings/new"); //  render the correct EJS template
 };
 
 module.exports.showListing = async (req, res) => {

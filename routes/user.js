@@ -4,13 +4,11 @@ const passport = require("passport");
 const wrapAsync = require("../utils/wrapAsync");
 const { saveRedirectUrl } = require("../middleware");
 const users = require("../controllers/user");
-
 // Signup routes
 router
   .route("/signup")
   .get(users.renderSignupForm)
   .post(wrapAsync(users.signup));
-
 // Login routes
 router
   .route("/login")
@@ -22,9 +20,7 @@ router
     }),
     users.login
   );
-
 // Logout route
 router.get("/logout", users.logout);
-
 module.exports = router;
 

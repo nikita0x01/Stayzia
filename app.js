@@ -15,7 +15,7 @@ const User = require("./models/user.js");
 
 
 const listingsRouter = require("./routes/listing.js");
-const reviewsRouter = require("./routes/review.js"); // ✅ new review router
+const reviewsRouter = require("./routes/review.js"); //  new review router
 const userRouter = require("./routes/user.js");
 
 const ExpressError = require("./utils/ExpressError");
@@ -25,8 +25,8 @@ const ExpressError = require("./utils/ExpressError");
 const dburl = process.env.ATLASDB_URL;
 
 main()
-  .then(() => console.log("✅ Connected to MongoDB successfully"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .then(() => console.log(" Connected to MongoDB successfully"))
+  .catch((err) => console.error(" MongoDB connection error:", err));
 
 async function main() {
   await mongoose.connect(dburl);
@@ -110,7 +110,7 @@ app.get("/", (req, res) => {
   res.send("Hi, I am root");
 });
 
-// ✅ Mount routes
+//  Mount routes
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter); 
 app.use("/", userRouter);// nested route
@@ -123,7 +123,7 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(8080, () => {
-  console.log("🚀 Server is listening on port 8080");
+  console.log(" Server is listening on port 8080");
 });
 
 app.post("/subscribe", (req, res) => {

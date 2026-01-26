@@ -1,9 +1,9 @@
-#  Stayzia — Your Next Stay Awaits
+##  Stayzia - Your Next Stay Awaits
 
 **Live Demo:** [https://stayzia.onrender.com/listings](https://stayzia.onrender.com/listings)
 
 Stayzia is a full-stack web application where users can browse, add, edit, and review accommodation listings.  
-Built using **Node.js**, **Express**, **MongoDB**, and **EJS**, Stayzia provides a seamless platform similar to Airbnb — with secure authentication, image uploads, and responsive design.
+Built using **Node.js**, **Express**, **MongoDB**, and **EJS**, Stayzia provides a seamless platform similar to Airbnb - with secure authentication, image uploads, and responsive design.
 
 ---
 

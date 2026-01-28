@@ -1,14 +1,11 @@
 const Listing = require("../models/listing");
-
 module.exports.index = async (req, res) => {
   let allListings = await Listing.find({});
   res.render("listings/index", { listings: allListings });
 };
-
 module.exports.renderNewForm = (req , res ) => (req, res) => {
   res.render("listings/new"); //  render the correct EJS template
 };
-
 module.exports.showListing = async (req, res) => {
   const listing = await Listing.findById(req.params.id).populate({ path: "reviews" , populate:{path:"author"},}).populate("owner");
   if(!listing) {
@@ -17,7 +14,6 @@ module.exports.showListing = async (req, res) => {
   }
   console.log(listing);
   res.render("listings/show", { listing });
-
 };
 
 

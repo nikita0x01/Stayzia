@@ -2,7 +2,6 @@ const Listing = require("./models/listing");
 const Review = require("./models/review");
 const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("./schema.js");
-
 // Middleware: Check if user is logged in
 module.exports.isLoggedIn = (req, res, next) => {
   console.log(req.path, "..", req.originalUrl);
@@ -13,7 +12,6 @@ module.exports.isLoggedIn = (req, res, next) => {
   }
   next();
 };
-
 // Middleware: Validate review data using Joi schema
 module.exports.validateReview = (req, res, next) => {
   const { error } = reviewSchema.validate(req.body);
@@ -24,7 +22,6 @@ module.exports.validateReview = (req, res, next) => {
     next();
   }
 };
-
 // Middleware: Save redirect URL for after login
 module.exports.saveRedirectUrl = (req, res, next) => {
   if (req.session.redirectUrl) {
@@ -32,7 +29,6 @@ module.exports.saveRedirectUrl = (req, res, next) => {
   }
   next();
 };
-
 // Middleware: Check if current user is the owner of the listing
 module.exports.isOwner = async (req, res, next) => {
   const { id } = req.params;
@@ -43,7 +39,6 @@ module.exports.isOwner = async (req, res, next) => {
   }
   next();
 };
-
 // Middleware: Check if current user is the author of the review
 module.exports.isReviewAuthor = async (req, res, next) => {
   const { id, reviewId } = req.params;

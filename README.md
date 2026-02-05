@@ -1,6 +1,7 @@
 ##  Stayzia - Your Next Stay Awaits
 
 **Live Demo:** [https://stayzia.onrender.com/listings](https://stayzia.onrender.com/listings)
+
 **Docker Image:** [https://hub.docker.com/r/nikita102005/stayzia](https://hub.docker.com/r/nikita102005/stayzia) 
 
 Stayzia is a full-stack web application where users can browse, create, edit, and review accommodation listings.

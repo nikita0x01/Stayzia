@@ -114,7 +114,7 @@ MAJORPROJECT
 │   │   └── signup.ejs
 │   │
 │   └── error.ejs
-├──Dockerfile
+├── Dockerfile
 ├── .env
 ├── .gitignore
 ├── package.json

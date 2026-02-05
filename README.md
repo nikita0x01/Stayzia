@@ -1,22 +1,23 @@
 ##  Stayzia - Your Next Stay Awaits
 
 **Live Demo:** [https://stayzia.onrender.com/listings](https://stayzia.onrender.com/listings)
+**Docker Image:** [https://hub.docker.com/r/nikita102005/stayzia](https://hub.docker.com/r/nikita102005/stayzia) 
 
-Stayzia is a full-stack web application where users can browse, add, edit, and review accommodation listings.  
-Built using **Node.js**, **Express**, **MongoDB**, and **EJS**, Stayzia provides a seamless platform similar to Airbnb - with secure authentication, image uploads, and responsive design.
+Stayzia is a full-stack web application where users can browse, create, edit, and review accommodation listings.
+Built with Node.js, Express, MongoDB, and EJS. The project is fully containerized using Docker.
 
 ---
 
 ##  Features
 
--  **Listings Management** – Create, view, edit, and delete property listings.
--  **Reviews** – Users can leave reviews and ratings on listings.
--  **Authentication** – Secure user login and signup using Passport.js.
--  **Image Uploads** – Handled via Multer and stored on Cloudinary.
--  **Responsive UI** – Styled using CSS3, Bootstrap, and optionally Tailwind CSS.
--  **Cloud Database** – MongoDB Atlas for online database hosting.
--  **Session & Flash Messages** – User-friendly notifications and persistent login sessions.
--  **Deployment** – Hosted on Render.
+- Listings management: create, view, edit, and delete listings
+- User authentication using Passport.js
+- Reviews and rating system
+- Image uploads using Multer and Cloudinary
+- Server-side rendering with EJS templates
+- MongoDB Atlas cloud database
+- Dockerized for easy deployment and portability
+- Hosted on Render.
 
 ---
 
@@ -112,7 +113,7 @@ MAJORPROJECT
 │   │   └── signup.ejs
 │   │
 │   └── error.ejs
-│
+├──Dockerfile
 ├── .env
 ├── .gitignore
 ├── package.json
@@ -141,8 +142,19 @@ nodemon app.js
 
 ---
 
+## Docker Support (Dockerized Project)
+Build the image locally
+```
+docker build -t stayzia .
+docker run -p 8080:8080 stayzia
+docker pull nikita102005/stayzia
+docker run -p 8080:8080 nikita102005/stayzia
+
+```
 ## Deployment
 
 The project is deployed on Render. Make sure to add all environment variables in the Render dashboard.
+
+
 
 

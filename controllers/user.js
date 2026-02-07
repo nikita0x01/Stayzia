@@ -1,8 +1,10 @@
+//business logic for user 
 const User = require("../models/user");
 // Render signup form
 module.exports.renderSignupForm = (req, res) => {
   res.render("users/signup.ejs");
 };
+
 // Handle signup logic
 module.exports.signup = async (req, res, next) => {
   try {
@@ -19,10 +21,12 @@ module.exports.signup = async (req, res, next) => {
     res.redirect("/signup");
   }
 };
+
 // Render login form
 module.exports.renderLoginForm = (req, res) => {
   res.render("users/login.ejs");
 };
+
 // Handle login logic
 module.exports.login = (req, res) => {
   const redirectUrl = req.session.redirectUrl || "/listings";
@@ -30,6 +34,7 @@ module.exports.login = (req, res) => {
   req.flash("success", `Welcome back, ${req.user.username}!`);
   res.redirect(redirectUrl);
 };
+
 // Handle logout
 module.exports.logout = (req, res, next) => {
   req.logOut((err) => {

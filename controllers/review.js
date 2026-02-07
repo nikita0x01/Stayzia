@@ -1,6 +1,8 @@
+//business logic for reviews
 const Listing = require("../models/listing");
 const Review = require("../models/review");
 const ExpressError = require("../utils/ExpressError");
+
 // Create a new review
 module.exports.createReview = async (req, res) => {
   const listing = await Listing.findById(req.params.id);

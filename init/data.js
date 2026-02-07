@@ -1,3 +1,4 @@
+// initialized data for listing
 const sampleListings = [
   {
     title: "Cozy Beachfront Cottage",

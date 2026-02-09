@@ -9,7 +9,6 @@ const listingControllers = require("../controllers/listing.js");
 const multer = require('multer');
 const upload = multer({dest:'uploads/'});
 
-
 // Validate Listing Middleware
 const validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body);
@@ -20,8 +19,6 @@ const validateListing = (req, res, next) => {
     next();
   }
 };
-
-
 
 // Index Route
 router.get("/", wrapAsync(listingControllers.index));
@@ -55,7 +52,6 @@ router.post("/listings", async (req, res) => {
   res.redirect(`/listings/${newListing._id}`);
 });
 
-
 // Create Route
 router.post("/", validateListing,isLoggedIn, upload.single('listing[image]'), wrapAsync(async (req, res) => {
   const newListing = new Listing(req.body.listing);
@@ -65,12 +61,14 @@ router.post("/", validateListing,isLoggedIn, upload.single('listing[image]'), wr
   res.redirect("/listings");
 }));
 
+
 // Edit Route
 router.get("/:id/edit",isLoggedIn, wrapAsync(async (req, res) => {
   const listing = await Listing.findById(req.params.id);
   
   res.render("listings/edit", { listing });
 }));
+
 
 // Update Route
 router.put("/:id", validateListing,isLoggedIn, wrapAsync(async (req, res) => {
@@ -79,6 +77,7 @@ router.put("/:id", validateListing,isLoggedIn, wrapAsync(async (req, res) => {
   res.redirect(`/listings/${req.params.id}`);
 }));
 
+
 // Delete Route
 router.delete("/:id",isLoggedIn, wrapAsync(async (req, res) => {
   await Listing.findByIdAndDelete(req.params.id);
@@ -86,12 +85,14 @@ router.delete("/:id",isLoggedIn, wrapAsync(async (req, res) => {
   res.redirect("/listings");
 }));
 
+
 // GET reservation form page
 router.get("/:id/reserve", isLoggedIn, async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
   res.render("listings/reserve", { listing });
 });
+
 
 // POST reservation form
 router.post("/:id/reserve", isLoggedIn, async (req, res) => {
@@ -101,6 +102,7 @@ router.post("/:id/reserve", isLoggedIn, async (req, res) => {
   // Optional: Save reservation info to DB
   // await Reservation.create({ listing: id, user: req.user._id, name, email, checkin, checkout, guests });
 
+  
   // Set flash message for successful reservation
   req.flash(
     "success",
